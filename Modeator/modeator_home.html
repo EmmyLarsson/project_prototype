@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dormitory Staff Portal | PSU Dorm 10-11</title>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="modeator_home.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar__brand">
+      <div class="topbar__logo"><span class="material-symbols-outlined">apartment</span></div>
+      <div>
+        <div class="topbar__title">Dormitory Staff Portal</div>
+        <div class="topbar__subtitle">PSU DORM 10&ndash;11 · HAT YAI</div>
+      </div>
+    </div>
+    <div class="topbar__right">
+      <div class="topbar__user">
+        <div class="topbar__user-avatar">
+          <svg viewBox="0 0 32 32"><rect width="32" height="32" fill="#dde1ff"/><circle cx="16" cy="12" r="6" fill="#1a40c2"/><path d="M4 30c0-7 5-11 12-11s12 4 12 11" fill="#1a40c2"/></svg>
+        </div>
+        <div>
+          <div class="topbar__user-name">เจ้าหน้าที่หอพัก</div>
+          <div class="topbar__user-role">Staff · Dorm 10-11</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar__identity">
+      <svg class="sidebar__logo" viewBox="0 0 72 72">
+        <circle cx="36" cy="36" r="36" fill="#1a40c2"/>
+        <circle cx="36" cy="36" r="30" fill="#fff"/>
+        <path d="M36 14 L54 24 L36 34 L18 24 Z" fill="#fcd400"/>
+        <rect x="24" y="34" width="24" height="20" fill="#1a40c2"/>
+        <rect x="30" y="40" width="12" height="14" fill="#fff"/>
+      </svg>
+      <h2>ระบบแจ้งซ่อมหอพักนักศึกษาในกำกับ 10-11<br>มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตหาดใหญ่</h2>
+    </div>
+
+    <nav class="sidebar__nav">
+      <ul>
+        <li class="sidebar__item is-active" data-page="home">
+          <span class="material-symbols-outlined">home</span><span>หน้าหลัก</span>
+        </li>
+        <li class="sidebar__item" data-page="repair">
+          <span class="material-symbols-outlined">build</span><span>จัดการงานซ่อม</span>
+        </li>
+        <li class="sidebar__item" data-page="equipment">
+          <span class="material-symbols-outlined">inventory_2</span><span>ครุภัณฑ์</span>
+        </li>
+        <li class="sidebar__item" data-page="report">
+          <span class="material-symbols-outlined">description</span><span>จัดทำสรุป</span>
+        </li>
+        <li class="sidebar__item" data-page="personnel">
+          <span class="material-symbols-outlined">manage_accounts</span><span>จัดการบุคลากร</span>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__footer">
+      <button class="sidebar__logout" id="logout-btn">
+        <span class="material-symbols-outlined">logout</span> ออกจากระบบ
+      </button>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <div class="page-header">
+      <div>
+        <div class="page-header__label">Dashboard Overview</div>
+        <div class="page-header__datetime">
+          <span id="current-date">–</span>
+          <span class="page-header__time" id="current-time">–</span>
+        </div>
+      </div>
+      <div class="notif-pill">
+        <span class="material-symbols-outlined">notifications</span>
+        <span>5 แจ้งเตือนใหม่</span>
+      </div>
+    </div>
+
+    <section>
+      <div class="section-head">
+        <h3>สถานะงานซ่อม</h3>
+        <button class="link-btn" id="view-all-btn">
+          ดูรายละเอียดทั้งหมด <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
+        </button>
+      </div>
+      <div class="status-grid">
+        <div class="status-card">
+          <div class="status-card__top">
+            <div class="status-icon status-icon--pending"><span class="material-symbols-outlined">pending_actions</span></div>
+            <span class="status-num status-num--pending">20</span>
+          </div>
+          <div class="status-label">รอดำเนินการ</div>
+          <div class="status-bar"><div class="status-bar__fill" style="width:60%; background:#705d00;"></div></div>
+        </div>
+        <div class="status-card">
+          <div class="status-card__top">
+            <div class="status-icon status-icon--progress"><span class="material-symbols-outlined">engineering</span></div>
+            <span class="status-num status-num--progress">20</span>
+          </div>
+          <div class="status-label">รอซ่อม</div>
+          <div class="status-bar"><div class="status-bar__fill" style="width:45%; background:#1a40c2;"></div></div>
+        </div>
+        <div class="status-card">
+          <div class="status-card__top">
+            <div class="status-icon status-icon--done"><span class="material-symbols-outlined">task_alt</span></div>
+            <span class="status-num status-num--done">8</span>
+          </div>
+          <div class="status-label">เสร็จสิ้น</div>
+          <div class="status-bar"><div class="status-bar__fill" style="width:85%; background:#22863a;"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h3>รายการซ่อมที่แจ้งเข้ามา</h3>
+      </div>
+      <div class="request-grid" id="request-grid"></div>
+      <div class="pagination" id="pagination"></div>
+    </section>
+
+    <section>
+      <div class="section-head"><h3>แจ้งเตือนสต๊อกครุภัณฑ์</h3></div>
+      <div class="inv-card">
+        <table>
+          <thead>
+            <tr><th>รหัสครุภัณฑ์</th><th>รายการ</th><th>สถานะ</th><th style="text-align:right;">การจัดการ</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>I001</b></td>
+              <td><div class="inv-item"><div class="inv-icon"><span class="material-symbols-outlined">water_drop</span></div>ก๊อกน้ำ</div></td>
+              <td><span class="badge-danger"><span class="dot"></span>สินค้าใกล้จะหมด</span></td>
+              <td style="text-align:right;"><button class="btn-manage">จัดการ</button></td>
+            </tr>
+            <tr>
+              <td><b>L042</b></td>
+              <td><div class="inv-item"><div class="inv-icon"><span class="material-symbols-outlined">lightbulb</span></div>หลอดไฟ LED</div></td>
+              <td><span class="badge-neutral">คงเหลือ 15 ชิ้น</span></td>
+              <td style="text-align:right;"><button class="btn-manage">จัดการ</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="modeator_home.js"></script>
+</body>
+</html>

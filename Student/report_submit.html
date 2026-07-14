@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniMaintain – แจ้งซ่อม</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary":                   "#705d00",
+            "primary-container":         "#ffd700",
+            "on-primary-fixed":          "#221b00",
+            "primary-fixed":             "#ffe16d",
+            "secondary":                 "#3f5d9c",
+            "secondary-container":       "#9bb8fe",
+            "on-secondary-container":    "#284785",
+            "surface":                   "#f9f9fc",
+            "surface-bright":            "#f9f9fc",
+            "surface-container-lowest":  "#ffffff",
+            "surface-container-low":     "#f3f3f6",
+            "surface-container":         "#eeeef0",
+            "surface-container-high":    "#e8e8ea",
+            "on-surface":                "#1a1c1e",
+            "on-surface-variant":        "#4d4732",
+            "outline":                   "#7e775f",
+            "outline-variant":           "#d0c6ab",
+            "background":                "#f3f3f6",
+            "error":                     "#ba1a1a"
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="report_submit.css">
+</head>
+<body>
+
+  <header class="app-bar">
+    <div class="app-bar__inner">
+      <button id="btn-back" class="icon-btn" aria-label="ย้อนกลับ">
+        <span class="material-symbols-outlined">arrow_back_ios_new</span>
+      </button>
+      <div style="flex:1;min-width:0">
+        <h1 class="app-bar__title">แจ้งซ่อม</h1>
+        <p class="app-bar__sub">กรอกข้อมูลให้ครบถ้วนก่อนส่ง</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <form id="repair-form" novalidate>
+
+      <section class="card">
+
+        <div class="card__header">
+          <div class="icon-badge icon-badge--gold">
+            <span class="material-symbols-outlined">person</span>
+          </div>
+          <div style="flex:1;min-width:0">
+            <h2 class="card__title">ข้อมูลส่วนตัว</h2>
+            <p class="card__sub">ผู้แจ้งซ่อม</p>
+          </div>
+          <div class="toggle-pill" role="group" aria-label="เลือกโหมดข้อมูล">
+              <span class="toggle-pill__thumb" aria-hidden="true"></span>  <!-- ← เพิ่มบรรทัดนี้ -->
+              <button type="button" id="mode-new"   class="toggle-pill__btn toggle-pill__btn--on">ข้อมูลใหม่</button>
+              <button type="button" id="mode-saved" class="toggle-pill__btn">ข้อมูลเดิม</button>
+          </div>
+        </div>
+
+        <div class="card__body">
+          <div class="field-group" id="fg-name">
+            <label class="field-label" for="inp-name">
+              <span class="material-symbols-outlined field-icon">badge</span>ชื่อผู้แจ้ง
+            </label>
+            <input id="inp-name" class="field-input" type="text"
+                   placeholder="ชื่อ-นามสกุล" autocomplete="name">
+            <p class="field-error">กรุณากรอกชื่อผู้แจ้ง</p>
+          </div>
+
+          <div class="field-group" id="fg-phone">
+            <label class="field-label" for="inp-phone">
+              <span class="material-symbols-outlined field-icon">phone</span>เบอร์โทรติดต่อ
+            </label>
+            <input id="inp-phone" class="field-input" type="tel"
+                   placeholder="0xx-xxx-xxxx" autocomplete="tel">
+            <p class="field-error">กรุณากรอกเบอร์โทรติดต่อ</p>
+          </div>
+
+          <div class="field-group" id="fg-room">
+            <label class="field-label" for="inp-room">
+              <span class="material-symbols-outlined field-icon">meeting_room</span>หมายเลขห้องพัก
+            </label>
+            <input id="inp-room" class="field-input" type="text" placeholder="เช่น 110912">
+            <p class="field-error">กรุณากรอกหมายเลขห้องพัก</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+
+        <div class="card__header">
+          <div class="icon-badge icon-badge--blue">
+            <span class="material-symbols-outlined">build</span>
+          </div>
+          <div style="flex:1;min-width:0">
+            <h2 class="card__title">รายงานปัญหา</h2>
+            <p class="card__sub">ระบุรายละเอียดความเสียหาย</p>
+          </div>
+        </div>
+
+        <div class="card__body">
+
+          <div class="field-group" id="fg-work-type">
+            <label class="field-label">
+              <span class="material-symbols-outlined field-icon">category</span>ประเภทงาน
+            </label>
+            <div id="work-grid" class="work-grid"></div>
+            <p class="field-error">กรุณาเลือกประเภทงาน</p>
+          </div>
+
+          <div class="field-group" id="fg-desc">
+            <label class="field-label" for="inp-desc">
+              <span class="material-symbols-outlined field-icon">edit_note</span>รายละเอียดปัญหา
+            </label>
+            <textarea id="inp-desc" class="field-input field-textarea" rows="4"
+              placeholder="อธิบายปัญหาที่พบให้ชัดเจน เช่น 'หลอดไฟห้องน้ำดับไม่ติดแม้เปลี่ยนหลอดแล้ว'"></textarea>
+            <p class="field-error">กรุณาระบุรายละเอียดปัญหา</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+
+        <div class="card__header">
+          <div class="icon-badge icon-badge--amber">
+            <span class="material-symbols-outlined">photo_camera</span>
+          </div>
+          <div style="flex:1;min-width:0">
+            <h2 class="card__title">รูปภาพประกอบ</h2>
+            <p class="card__sub">แนบหลักฐานความเสียหาย</p>
+          </div>
+          <span class="badge-counter" id="img-count">0 / 6</span>
+        </div>
+
+        <div class="card__body">
+
+          <div id="upload-zone" class="upload-zone"
+               role="button" tabindex="0" aria-label="อัพโหลดรูปภาพ">
+            <div class="upload-zone__icon-wrap">
+              <span class="material-symbols-outlined">add_photo_alternate</span>
+            </div>
+            <p class="upload-zone__title">แตะหรือลากรูปมาวางที่นี่</p>
+            <p class="upload-zone__sub">สูงสุด 6 รูป • ไม่เกินรูปละ 10 MB</p>
+            <input id="file-input" type="file" accept="image/*" multiple
+                   style="position:absolute;inset:0;opacity:0;pointer-events:none" aria-hidden="true">
+          </div>
+
+          <div id="img-grid" class="img-grid" aria-live="polite"></div>
+
+          <div class="divider"></div>
+
+          <div class="perm-section">
+            <div class="perm-info">
+              <span class="material-symbols-outlined perm-info__icon">info</span>
+              <div>
+                <p class="perm-info__title">การเข้าซ่อมในห้องพัก</p>
+                <p class="perm-info__sub">อนุญาตให้ช่างเข้าซ่อมในกรณีที่ท่านไม่อยู่ในห้อง</p>
+              </div>
+            </div>
+            <div class="perm-toggle" role="group" aria-label="การอนุญาตเข้าห้อง">
+              <button type="button" id="perm-yes" class="perm-btn perm-btn--yes">
+                <span class="material-symbols-outlined">check_circle</span>อนุญาต
+              </button>
+              <button type="button" id="perm-no"  class="perm-btn perm-btn--no perm-btn--active">
+                <span class="material-symbols-outlined">cancel</span>ไม่อนุญาต
+              </button>
+            </div>
+            <input type="hidden" id="inp-permission" value="yes">
+          </div>
+        </div>
+      </section>
+
+    </form>
+  </main>
+
+  <div class="bottom-bar">
+    <button id="btn-submit" class="btn-primary" type="button">
+      <span class="material-symbols-outlined">send</span>ส่งรายงาน
+    </button>
+  </div>
+
+  <div id="modal-overlay" class="modal-overlay"
+       aria-hidden="true" role="dialog" aria-modal="true" aria-label="ส่งรายงานสำเร็จ">
+    <div id="modal-sheet" class="modal-sheet">
+
+      <div class="modal-handle"></div>
+
+      <div class="success-ring">
+        <div class="success-icon">
+          <span class="material-symbols-outlined"
+                style="font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;font-size:38px;color:#fff">
+            check
+          </span>
+        </div>
+      </div>
+
+      <h2 class="modal-title">ส่งรายงานสำเร็จ!</h2>
+      <p class="modal-desc">
+        คำขอแจ้งซ่อมของคุณถูกบันทึกในระบบแล้ว<br>
+        เจ้าหน้าที่จะดำเนินการโดยเร็ว
+      </p>
+
+      <div class="ticket-chip">
+        <span class="material-symbols-outlined"
+              style="font-size:15px;color:#705d00">confirmation_number</span>
+        <span id="ticket-id">REQ-XXXXXX</span>
+      </div>
+
+      <div class="modal-info-row">
+        <div class="info-item">
+          <span class="material-symbols-outlined info-item__icon" style="color:#3f5d9c">schedule</span>
+          <div>
+            <p class="info-item__label">เวลารับเรื่อง</p>
+            <p class="info-item__value" id="stat-time">--:--</p>
+          </div>
+        </div>
+        <div class="info-divider"></div>
+        <div class="info-item">
+          <span class="material-symbols-outlined info-item__icon" style="color:#705d00">build</span>
+          <div>
+            <p class="info-item__label">ประเภทงาน</p>
+            <p class="info-item__value" id="stat-type">-</p>
+          </div>
+        </div>
+      </div>
+
+      <button id="btn-ok" class="btn-primary btn-primary--full" type="button">
+        <span class="material-symbols-outlined">history</span>ดูประวัติการแจ้งซ่อม
+      </button>
+    </div>
+  </div>
+
+  <script src="report_submit.js"></script>
+</body>
+</html>

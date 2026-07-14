@@ -1,0 +1,441 @@
+/* ════════════════════════════════════════
+   phone_contacts.css
+   UniMaintain — Phone Contacts Page
+   Design pattern: follows profile_edit.css
+════════════════════════════════════════ */
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary:            #705d00;
+  --primary-container:  #ffd700;
+  --on-primary:         #ffffff;
+  --secondary:          #3f5d9c;
+  --on-secondary:       #ffffff;
+  --secondary-container:#9bb8fe;
+  --background:         #f9f9fc;
+  --surface:            #f9f9fc;
+  --surface-bright:     #ffffff;
+  --surface-container:  #eeeef0;
+  --surface-dim:        #dadadc;
+  --on-surface:         #1a1c1e;
+  --on-surface-variant: #4d4732;
+  --outline:            #7e775f;
+  --outline-variant:    #c8c5b4;
+
+  /* accent per-department */
+  --accent-yellow: #ffd700;
+  --accent-yellow-bg: #fffbe6;
+  --accent-blue:   #3f5d9c;
+  --accent-blue-bg:#e8eefb;
+  --accent-green:  #1a6b3c;
+  --accent-green-bg:#e6f5ed;
+  --accent-orange: #b84c00;
+  --accent-orange-bg:#fff0e6;
+
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+  --radius-full: 9999px;
+
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:  0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04);
+
+  --font-head: 'Be Vietnam Pro', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--background);
+  color: var(--on-surface);
+  min-height: 100svh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ════════════════════════════════════════
+   MATERIAL SYMBOLS
+════════════════════════════════════════ */
+.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded', sans-serif;
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* ════════════════════════════════════════
+   HEADER  (same pattern as profile_edit)
+════════════════════════════════════════ */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(135deg, #ffd700 0%, #ffe87c 100%);
+  border-radius: 0 0 28px 28px;
+  box-shadow: 0 2px 10px rgba(112, 93, 0, 0.18);
+  display: flex;
+  align-items: center;
+  padding: 14px 20px 17px;
+  animation: drop-fade 0.42s cubic-bezier(0.2, 0, 0, 1) both;
+}
+
+.app-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: transparent;
+  color: #221b00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .18s, transform .12s;
+  flex-shrink: 0;
+}
+.btn-icon:hover  { background: rgba(112, 93, 0, 0.12); }
+.btn-icon:active { transform: scale(.88); }
+
+.header-title {
+  flex: 1;
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 800;
+  color: #221b00;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+/* ════════════════════════════════════════
+   MAIN
+════════════════════════════════════════ */
+.main-content {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 0 56px;
+}
+
+/* ════════════════════════════════════════
+   HERO SECTION  (same role as avatar-section)
+════════════════════════════════════════ */
+.hero-section {
+  background: var(--primary-container);
+  padding: 28px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* decorative blobs — same as profile_edit */
+.hero-section::before,
+.hero-section::after {
+  content: '';
+  position: absolute;
+  border-radius: var(--radius-full);
+  pointer-events: none;
+}
+.hero-section::before {
+  width: 180px; height: 180px;
+  background: rgba(255,255,255,.20);
+  top: -60px; right: -50px;
+  filter: blur(32px);
+}
+.hero-section::after {
+  width: 130px; height: 130px;
+  background: rgba(112,93,0,.18);
+  bottom: -40px; left: -30px;
+  filter: blur(26px);
+}
+
+.hero-icon-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-full);
+  background: rgba(255,255,255,.55);
+  border: 3px solid rgba(255,255,255,.9);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-icon {
+  font-size: 40px;
+  color: var(--primary);
+}
+
+.hero-desc {
+  font-size: 13px;
+  color: #3a2e00;
+  text-align: center;
+  line-height: 1.6;
+  opacity: .82;
+  position: relative;
+  z-index: 1;
+}
+
+/* ════════════════════════════════════════
+   CONTACT SECTION  (same role as form-section)
+════════════════════════════════════════ */
+.contact-section {
+  margin: -20px 16px 0;
+  position: relative;
+  z-index: 10;
+  background: var(--surface-bright);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  padding: 20px 20px 24px;
+  border: 1px solid rgba(0,0,0,.05);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  opacity: 0;
+  animation: card-fade-up 0.56s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+/* ── Group Label  (same as profile_edit) ── */
+.group-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--on-surface-variant);
+  opacity: .75;
+}
+.group-label .material-symbols-rounded { font-size: 16px; }
+
+/* ════════════════════════════════════════
+   CONTACT LIST
+════════════════════════════════════════ */
+.contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Divider ── */
+.contact-divider {
+  height: 1px;
+  background: var(--surface-container);
+  margin: 0 4px;
+}
+
+/* ── Contact Item ── */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 4px;
+  transition: background .15s;
+  border-radius: var(--radius-md);
+}
+.contact-item:hover { background: var(--surface-container); }
+
+/* ── Department Icon ── */
+.contact-icon-wrap {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.contact-icon-wrap .material-symbols-rounded { font-size: 24px; }
+
+.contact-icon-wrap--yellow {
+  background: var(--accent-yellow-bg);
+  color: var(--primary);
+}
+.contact-icon-wrap--blue {
+  background: var(--accent-blue-bg);
+  color: var(--accent-blue);
+}
+.contact-icon-wrap--green {
+  background: var(--accent-green-bg);
+  color: var(--accent-green);
+}
+.contact-icon-wrap--orange {
+  background: var(--accent-orange-bg);
+  color: var(--accent-orange);
+}
+
+/* ── Info Text ── */
+.contact-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.contact-name {
+  font-family: var(--font-head);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--on-surface);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contact-number {
+  font-size: 13px;
+  color: var(--on-surface-variant);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.3px;
+}
+
+/* ── Action Buttons ── */
+.contact-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Copy button — outlined style */
+.btn-copy {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--outline-variant);
+  background: transparent;
+  color: var(--on-surface-variant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s, transform .12s;
+}
+.btn-copy .material-symbols-rounded { font-size: 18px; }
+.btn-copy:hover {
+  background: var(--surface-container);
+  border-color: var(--outline);
+  color: var(--on-surface);
+}
+.btn-copy:active { transform: scale(.88); }
+
+/* Call button — filled style (secondary color) */
+.btn-call {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #3f5d9c 0%, #0f2347 100%);
+  color: var(--on-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(26, 58, 108, 0.35);
+  transition: box-shadow .2s, transform .12s;
+}
+.btn-call .material-symbols-rounded { font-size: 20px; }
+.btn-call:hover  { box-shadow: 0 6px 20px rgba(26, 58, 108, 0.48); }
+.btn-call:active { transform: scale(.88); }
+
+/* ── Info Banner  (same role as readonly-banner) ── */
+.info-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fffbea;
+  border: 1px solid #e9c400;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  margin-top: 4px;
+}
+.info-banner .material-symbols-rounded {
+  font-size: 18px;
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.info-banner p {
+  font-size: 13px;
+  color: var(--primary);
+  line-height: 1.5;
+}
+
+/* ════════════════════════════════════════
+   TOAST
+════════════════════════════════════════ */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  z-index: 300;
+  background: #1a1c1e;
+  color: #fff;
+  border-radius: var(--radius-full);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0,0,0,.22);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s, transform .3s cubic-bezier(.32,1.2,.46,1);
+}
+.toast .material-symbols-rounded {
+  font-size: 18px;
+  color: #4ade80;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ════════════════════════════════════════
+   ANIMATIONS
+════════════════════════════════════════ */
+@keyframes drop-fade {
+  from { opacity: 0; transform: translateY(-18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes card-fade-up {
+  from { opacity: 0; transform: translateY(28px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media (min-width: 480px) {
+  .contact-section { margin-left: auto; margin-right: auto; max-width: 448px; }
+  .hero-section { padding: 36px 24px 48px; }
+}

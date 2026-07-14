@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าหลัก — ระบบแจ้งซ่อมหอพัก 10-11 ม.อ.หาดใหญ่</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
+    <!-- เรียกใช้งานไฟล์สไตล์ home.css -->
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <!-- ── Header ─────────────────────────────────────── -->
+    <header class="app-header">
+        <div class="hdr-top">
+            <div class="hdr-left">
+                <div class="logo-box">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-LLw5rBC9GnzwtUd6tv8ionOILCQZJgvcHTsTCiqjJzkXyIHFUpDf6qzVJln2WGyHURdok79S6tbtv15nEDXh0H5NpSJzzL0gdOjwrFNOBLzqUBsWb9sWk03PQY7hOSE5LltAEflwPl1RMPHOq0XuyFMSQx3DdG5XoBdIKYHf33ogGIrpKRbxrGsH3bnUzyCllHTo9CoMuqkwHAGKlX38kVugECvqAaj_WHg888OsqHgO83vhmKxOBf4ihMttd29D9WzHBRymYKQ"
+                         alt="PSU Logo" onerror="this.style.opacity='0'">
+                </div>
+                <p class="hdr-title">
+                    ระบบแจ้งซ่อมหอพักนักศึกษาในกำกับ<br>
+                    10-11 มหาวิทยาลัยสงขลานครินทร์<br>
+                    วิทยาเขตหาดใหญ่
+                </p>
+            </div>
+            <button class="notif-btn" id="notifBtn" aria-label="การแจ้งเตือน">
+                <span class="material-symbols-outlined">notifications</span>
+                <span class="notif-dot"></span>
+            </button>
+        </div>
+
+        <div class="hdr-search">
+            <div class="search-wrap">
+                <span class="material-symbols-outlined s-icon">search</span>
+                <input type="search" id="searchInput"
+                    placeholder="ค้นหาหมายเลข Case หรือรายการซ่อม…"
+                    autocomplete="off" aria-label="ค้นหา">
+                <button class="btn-clear" id="btnClear" aria-label="ล้างการค้นหา">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── Main ───────────────────────────────────────── -->
+    <main>
+        <!-- Stats Filter Row -->
+        <div class="stats-row" role="group" aria-label="กรองตามสถานะ">
+            <div class="stat-card s-pending" data-filter="pending" role="button" tabindex="0" aria-pressed="false">
+                <span class="s-num" id="cntPending">–</span>
+                <span class="s-lbl">รอตรวจสอบ</span>
+            </div>
+            <div class="stat-card s-working" data-filter="working" role="button" tabindex="0" aria-pressed="false">
+                <span class="s-num" id="cntWorking">–</span>
+                <span class="s-lbl">กำลังซ่อม</span>
+            </div>
+            <div class="stat-card s-done" data-filter="done" role="button" tabindex="0" aria-pressed="false">
+                <span class="s-num" id="cntDone">–</span>
+                <span class="s-lbl">เสร็จแล้ว</span>
+            </div>
+        </div>
+
+        <!-- Section Header -->
+        <div class="sec-row">
+            <h2>งานซ่อมปัจจุบัน</h2>
+            <span class="count-pill" id="countPill">–</span>
+        </div>
+
+        <!-- Repair Cards -->
+        <div class="card-stack" id="cardStack">
+
+            <a class="r-card st-pending" href="#" data-id="1100067" data-items="ไฟเสีย ชักโครกชำรุด" data-status="pending">
+                <div class="card-body">
+                    <div class="card-r1">
+                        <div>
+                            <p class="c-lbl">รหัส Case</p>
+                            <p class="c-num">#1100067</p>
+                        </div>
+                        <div>
+                            <p class="c-lbl" style="text-align:right">วันที่แจ้ง</p>
+                            <p class="d-val">07/02/2569</p>
+                        </div>
+                    </div>
+                    <div class="card-r2">
+                        <div class="info-row">
+                            <span class="i-key">รายการซ่อม</span>
+                            <span class="i-val">ไฟเสีย, ชักโครกชำรุด</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="i-key">ประเภทงาน</span>
+                            <span class="i-val">
+                                <span class="tag">งานไฟฟ้า</span>
+                                <span class="tag">งานประปา</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-r3">
+                        <span class="st-badge st-pending"><span class="st-dot"></span>รอตรวจสอบ</span>
+                        <span class="arrow-circle"><span class="material-symbols-outlined">chevron_right</span></span>
+                    </div>
+                </div>
+            </a>
+
+            <a class="r-card st-pending" href="#" data-id="1100063" data-items="หน้าต่างชำรุด บานพับหัก" data-status="pending">
+                <div class="card-body">
+                    <div class="card-r1">
+                        <div>
+                            <p class="c-lbl">รหัส Case</p>
+                            <p class="c-num">#1100063</p>
+                        </div>
+                        <div>
+                            <p class="c-lbl" style="text-align:right">วันที่แจ้ง</p>
+                            <p class="d-val">06/02/2569</p>
+                        </div>
+                    </div>
+                    <div class="card-r2">
+                        <div class="info-row">
+                            <span class="i-key">รายการซ่อม</span>
+                            <span class="i-val">หน้าต่างชำรุด, บานพับหัก</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="i-key">ประเภทงาน</span>
+                            <span class="i-val"><span class="tag">งานช่างทั่วไป</span></span>
+                        </div>
+                    </div>
+                    <div class="card-r3">
+                        <span class="st-badge st-pending"><span class="st-dot"></span>รอตรวจสอบ</span>
+                        <span class="arrow-circle"><span class="material-symbols-outlined">chevron_right</span></span>
+                    </div>
+                </div>
+            </a>
+
+            <a class="r-card st-working" href="#" data-id="1100059" data-items="เตียงนอนชำรุด ขาโต๊ะหัก" data-status="working">
+                <div class="card-body">
+                    <div class="card-r1">
+                        <div>
+                            <p class="c-lbl">รหัส Case</p>
+                            <p class="c-num">#1100059</p>
+                        </div>
+                        <div>
+                            <p class="c-lbl" style="text-align:right">วันที่แจ้ง</p>
+                            <p class="d-val">05/02/2569</p>
+                        </div>
+                    </div>
+                    <div class="card-r2">
+                        <div class="info-row">
+                            <span class="i-key">รายการซ่อม</span>
+                            <span class="i-val">เตียงนอนชำรุด, ขาโต๊ะหัก</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="i-key">ประเภทงาน</span>
+                            <span class="i-val"><span class="tag">งานเฟอร์นิเจอร์</span></span>
+                        </div>
+                    </div>
+                    <div class="card-r3">
+                        <span class="st-badge st-working"><span class="st-dot"></span>อยู่ระหว่างการซ่อม</span>
+                        <span class="arrow-circle"><span class="material-symbols-outlined">chevron_right</span></span>
+                    </div>
+                </div>
+            </a>
+
+            <a class="r-card st-done" href="#" data-id="1100045" data-items="แอร์ไม่เย็น คอมเพรสเซอร์เสีย" data-status="done">
+                <div class="card-body">
+                    <div class="card-r1">
+                        <div>
+                            <p class="c-lbl">รหัส Case</p>
+                            <p class="c-num">#1100045</p>
+                        </div>
+                        <div>
+                            <p class="c-lbl" style="text-align:right">วันที่แจ้ง</p>
+                            <p class="d-val">20/01/2569</p>
+                        </div>
+                    </div>
+                    <div class="card-r2">
+                        <div class="info-row">
+                            <span class="i-key">รายการซ่อม</span>
+                            <span class="i-val">แอร์ไม่เย็น (คอมเพรสเซอร์เสีย)</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="i-key">ประเภทงาน</span>
+                            <span class="i-val"><span class="tag">งานระบบปรับอากาศ</span></span>
+                        </div>
+                    </div>
+                    <div class="card-r3">
+                        <span class="st-badge st-done"><span class="st-dot"></span>เสร็จสิ้น</span>
+                        <span class="arrow-circle"><span class="material-symbols-outlined">chevron_right</span></span>
+                    </div>
+                </div>
+            </a>
+
+        </div><!-- /card-stack -->
+
+        <div class="empty-state" id="emptyState">
+            <span class="material-symbols-outlined">search_off</span>
+            <p class="e-title">ไม่พบรายการที่ค้นหา</p>
+            <p class="e-sub">ลองพิมพ์รหัส Case<br>หรือชื่อรายการซ่อมใหม่อีกครั้ง</p>
+        </div>
+    </main>
+
+    <!-- ── FAB ────────────────────────────────────────── -->
+    <div class="fab-wrapper">
+        <button class="fab" id="fabBtn" aria-label="แจ้งซ่อม">
+            <span class="material-symbols-outlined">add</span>
+            แจ้งซ่อม
+        </button>
+    </div>
+
+    <!-- แถบเมนูด้านล่าง -->
+    <nav class="bottom-nav" aria-label="เมนูหลัก">
+        <button class="nav-it active" data-page="home" aria-label="หน้าหลัก">
+            <span class="material-symbols-outlined">home</span>
+            <span class="n-lbl">หน้าหลัก</span>
+        </button>
+        <button class="nav-it" data-page="history" aria-label="ประวัติการแจ้ง">
+            <span class="material-symbols-outlined">history</span>
+            <span class="n-lbl">ประวัติแจ้ง</span>
+        </button>
+        <button class="nav-it" data-page="profile" aria-label="โปรไฟล์">
+            <span class="material-symbols-outlined">person</span>
+            <span class="n-lbl">โปรไฟล์</span>
+        </button>
+    </nav>
+
+    <!-- เรียกใช้งานไฟล์สคริปต์ home.js -->
+    <script src="home.js"></script>
+</body>
+</html>

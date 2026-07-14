@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ครุภัณฑ์ | Dormitory Staff Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="modeator_equipment.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════ TOPBAR (shared) ═══════════════════════ -->
+  <header class="topbar">
+    <div class="topbar__brand">
+      <div class="topbar__logo"><span class="material-symbols-outlined">apartment</span></div>
+      <div>
+        <div class="topbar__title">Dormitory Staff Portal</div>
+        <div class="topbar__subtitle">PSU DORM 10&ndash;11 · HAT YAI</div>
+      </div>
+    </div>
+    <div class="topbar__right">
+      <div class="topbar__user">
+        <div class="topbar__user-avatar">
+          <svg viewBox="0 0 32 32"><rect width="32" height="32" fill="#dde1ff"/><circle cx="16" cy="12" r="6" fill="#1a40c2"/><path d="M4 30c0-7 5-11 12-11s12 4 12 11" fill="#1a40c2"/></svg>
+        </div>
+        <div>
+          <div class="topbar__user-name">เจ้าหน้าที่หอพัก</div>
+          <div class="topbar__user-role">Staff · Dorm 10-11</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ SIDEBAR (shared) ═══════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar__identity">
+      <svg class="sidebar__logo" viewBox="0 0 72 72">
+        <circle cx="36" cy="36" r="36" fill="#1a40c2"/>
+        <circle cx="36" cy="36" r="30" fill="#fff"/>
+        <path d="M36 14 L54 24 L36 34 L18 24 Z" fill="#fcd400"/>
+        <rect x="24" y="34" width="24" height="20" fill="#1a40c2"/>
+        <rect x="30" y="40" width="12" height="14" fill="#fff"/>
+      </svg>
+      <h2>ระบบแจ้งซ่อมหอพักนักศึกษาในกำกับ 10-11<br>มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตหาดใหญ่</h2>
+    </div>
+
+    <nav class="sidebar__nav">
+      <ul>
+        <li class="sidebar__item" data-page="home">
+          <span class="material-symbols-outlined">home</span><span>หน้าหลัก</span>
+        </li>
+        <li class="sidebar__item" data-page="repair">
+          <span class="material-symbols-outlined">build</span><span>จัดการงานซ่อม</span>
+        </li>
+        <li class="sidebar__item is-active" data-page="equipment">
+          <span class="material-symbols-outlined">inventory_2</span><span>ครุภัณฑ์</span>
+        </li>
+        <li class="sidebar__item" data-page="report">
+          <span class="material-symbols-outlined">description</span><span>จัดทำสรุป</span>
+        </li>
+        <li class="sidebar__item" data-page="personnel">
+          <span class="material-symbols-outlined">manage_accounts</span><span>จัดการบุคลากร</span>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__footer">
+      <button class="sidebar__logout" id="logout-btn">
+        <span class="material-symbols-outlined">logout</span> ออกจากระบบ
+      </button>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════ MAIN CONTENT ═══════════════════════ -->
+  <main class="main">
+
+    <div class="page-header">
+      <div>
+        <div class="page-header__label">Inventory Management</div>
+        <div class="page-header__datetime">
+          <span>ครุภัณฑ์</span>
+        </div>
+      </div>
+      <button class="btn-add-equipment" id="open-add-modal">
+        <span class="material-symbols-outlined">add</span> เพิ่มครุภัณฑ์
+      </button>
+    </div>
+
+    <!-- Search -->
+    <div class="search-row">
+      <div class="search-box">
+        <span class="material-symbols-outlined">search</span>
+        <input type="text" id="search-input" placeholder="ค้นหาครุภัณฑ์ ชื่อ หรือรหัส...">
+      </div>
+    </div>
+
+    <!-- Status filter pills -->
+    <div class="status-filter-row" id="status-filter-row">
+      <button class="status-pill is-active" data-status="all">
+        <span class="status-pill__dot" style="background:#747686"></span>
+        ทั้งหมด <span class="status-pill__count" id="count-all">0</span>
+      </button>
+      <button class="status-pill" data-status="stock">
+        <span class="status-pill__dot" style="background:#22863a"></span>
+        คงคลัง <span class="status-pill__count" id="count-stock">0</span>
+      </button>
+      <button class="status-pill" data-status="low">
+        <span class="status-pill__dot" style="background:#705d00"></span>
+        ใกล้จะหมด <span class="status-pill__count" id="count-low">0</span>
+      </button>
+      <button class="status-pill" data-status="out">
+        <span class="status-pill__dot" style="background:#ba1a1a"></span>
+        หมดคงคลัง <span class="status-pill__count" id="count-out">0</span>
+      </button>
+    </div>
+
+    <!-- Category chips -->
+    <section>
+      <h3 class="category-title">ประเภท</h3>
+      <div class="category-chip-row" id="category-chip-row">
+        <button class="category-chip is-active" data-category="all">ทั้งหมด</button>
+        <button class="category-chip" data-category="electric">ไฟฟ้า</button>
+        <button class="category-chip" data-category="plumbing">ประปา</button>
+        <button class="category-chip" data-category="furniture">เฟอร์นิเจอร์</button>
+        <button class="category-chip" data-category="room">ห้อง</button>
+        <button class="category-chip" data-category="internet">อินเทอร์เน็ต</button>
+        <button class="category-chip" data-category="other">อื่นๆ</button>
+      </div>
+    </section>
+
+    <!-- Equipment card grid -->
+    <section>
+      <div class="equipment-grid" id="equipment-grid"></div>
+      <div class="empty-state" id="empty-state" style="display:none;">
+        <span class="material-symbols-outlined">inventory_2</span>
+        <p>ไม่พบครุภัณฑ์ที่ตรงกับเงื่อนไข</p>
+      </div>
+      <div class="pagination" id="pagination"></div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ MODAL: ADD / EDIT EQUIPMENT ═══════════════════════ -->
+  <div class="modal-overlay" id="equipment-modal-overlay">
+    <div class="equipment-modal">
+      <div class="equipment-modal__header">
+        <h2 id="modal-title">เพิ่มครุภัณฑ์</h2>
+        <button class="modal-delete-btn" id="modal-delete-btn" style="display:none;">
+          <span class="material-symbols-outlined">delete</span> ลบสินค้า
+        </button>
+        <button class="modal-close-btn" id="modal-close-btn">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="equipment-modal__body">
+        <!-- Left: image upload -->
+        <div class="modal-upload-col">
+          <label class="modal-field-label">รูปภาพครุภัณฑ์</label>
+          <div class="upload-zone" id="upload-zone">
+            <input type="file" id="image-input" accept="image/*" class="upload-zone__input">
+            <div class="upload-zone__placeholder" id="upload-placeholder">
+              <span class="material-symbols-outlined">upload</span>
+              <p>กรุณาอัปโหลดรูปภาพ</p>
+              <span class="upload-zone__hint">คลิกเพื่อเลือกไฟล์ (JPG, PNG)</span>
+            </div>
+            <div class="upload-zone__preview" id="upload-preview" style="display:none;">
+              <img id="preview-img" alt="ตัวอย่างรูปครุภัณฑ์">
+              <div class="upload-zone__overlay">
+                <span class="material-symbols-outlined">edit</span>
+                <span>เปลี่ยนรูปภาพ</span>
+              </div>
+            </div>
+          </div>
+          <span class="field-error" id="image-error"></span>
+        </div>
+
+        <!-- Right: form fields -->
+        <div class="modal-form-col">
+          <div class="modal-field">
+            <label class="modal-field-label" for="equipment-name">ชื่อครุภัณฑ์</label>
+            <input type="text" id="equipment-name" class="modal-input" placeholder="เช่น เก้าอี้สำนักงาน">
+            <span class="field-error" id="name-error"></span>
+          </div>
+
+          <div class="modal-field">
+            <label class="modal-field-label" for="equipment-category">ประเภท</label>
+            <div class="select-wrap">
+              <select id="equipment-category" class="modal-select">
+                <option value="">เลือกประเภท</option>
+                <option value="electric">ไฟฟ้า</option>
+                <option value="plumbing">ประปา</option>
+                <option value="room">ห้อง</option>
+                <option value="furniture">เฟอร์นิเจอร์</option>
+                <option value="internet">อินเทอร์เน็ต</option>
+                <option value="other">อื่นๆ</option>
+              </select>
+              <span class="material-symbols-outlined select-wrap__icon">expand_more</span>
+            </div>
+            <span class="field-error" id="category-error"></span>
+          </div>
+
+          <div class="modal-field">
+            <label class="modal-field-label">จำนวน</label>
+            <div class="stepper-row">
+              <div class="stepper">
+                <button type="button" class="stepper__btn" id="qty-decrement">
+                  <span class="material-symbols-outlined">remove</span>
+                </button>
+                <input type="number" id="equipment-quantity" class="stepper__input" value="1" min="0">
+                <button type="button" class="stepper__btn" id="qty-increment">
+                  <span class="material-symbols-outlined">add</span>
+                </button>
+              </div>
+              <span class="stepper-unit">หน่วย (ชิ้น)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="equipment-modal__footer">
+        <button class="modal-btn modal-btn--cancel" id="modal-cancel-btn">ยกเลิก</button>
+        <button class="modal-btn modal-btn--save" id="modal-save-btn">
+          <span id="save-btn-label">เพิ่ม</span>
+          <span class="material-symbols-outlined" id="save-btn-icon">add_circle</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ MODAL: VALIDATION ALERT ═══════════════════════ -->
+  <div class="modal-overlay" id="alert-modal-overlay">
+    <div class="alert-modal">
+      <div class="alert-modal__icon">
+        <span class="material-symbols-outlined">error</span>
+      </div>
+      <h3>กรอกข้อมูลไม่ครบถ้วน</h3>
+      <p id="alert-modal-message">กรุณากรอกข้อมูลให้ครบทุกช่องก่อนบันทึก</p>
+      <button class="modal-btn modal-btn--save" id="alert-modal-close">รับทราบ</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ MODAL: DELETE CONFIRM ═══════════════════════ -->
+  <div class="modal-overlay" id="delete-modal-overlay">
+    <div class="alert-modal">
+      <div class="alert-modal__icon alert-modal__icon--danger">
+        <span class="material-symbols-outlined">delete</span>
+      </div>
+      <h3>ยืนยันการลบครุภัณฑ์</h3>
+      <p id="delete-modal-message">คุณต้องการลบรายการนี้ออกจากระบบใช่หรือไม่?</p>
+      <div class="alert-modal__actions">
+        <button class="modal-btn modal-btn--cancel" id="delete-cancel-btn">ยกเลิก</button>
+        <button class="modal-btn modal-btn--danger" id="delete-confirm-btn">ลบสินค้า</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="modeator_equipment.js"></script>
+</body>
+</html>

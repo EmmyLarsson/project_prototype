@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ติดตามงานซ่อม — UniMaintain</title>
+  <link rel="stylesheet" href="case_status.css">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-top">
+      <button class="btn-back" id="btn-back" aria-label="กลับ">
+        <span class="material-symbols-rounded">arrow_back_ios_new</span>
+      </button>
+      <div class="header-title-group">
+        <h1 class="header-title">ติดตามงานซ่อม</h1>
+        <p class="header-sub">รหัส Case: <strong>1100067</strong></p>
+      </div>
+      <span class="status-badge status-badge--progress">กำลังดำเนินการ</span>
+    </div>
+
+    <div class="stepper">
+      <div class="stepper__track">
+        <div class="stepper__fill" style="width: 50%"></div>
+      </div>
+      <div class="stepper__steps">
+
+        <div class="step step--done">
+          <div class="step__node">
+            <span class="material-symbols-rounded">check</span>
+          </div>
+          <span class="step__label">ได้รับคำร้อง</span>
+          <span class="step__date">01/02/69</span>
+        </div>
+
+        <div class="step step--active">
+          <div class="step__node">
+            <span class="material-symbols-rounded">build</span>
+          </div>
+          <span class="step__label">กำลังซ่อมแซม</span>
+          <span class="step__date">03/02/69</span>
+        </div>
+
+        <div class="step step--pending">
+          <div class="step__node">
+            <span class="material-symbols-rounded">verified</span>
+          </div>
+          <span class="step__label">สำเร็จ</span>
+          <span class="step__date">—</span>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <p class="section-label">ไทม์ไลน์ความคืบหน้า</p>
+
+    <div class="timeline">
+
+      <div class="tl-item tl-item--latest">
+        <div class="tl-connector"></div>
+        <div class="tl-icon tl-icon--blue">
+          <span class="material-symbols-rounded">event_available</span>
+        </div>
+        <div class="tl-card">
+          <div class="tl-card__header">
+            <div>
+              <span class="tl-badge tl-badge--new">ล่าสุด</span>
+              <p class="tl-title">ได้รับวันนัดหมายการซ่อม</p>
+            </div>
+            <span class="tl-date">07/02/2569</span>
+          </div>
+          <div class="tl-card__body">
+            <div class="appt-highlight">
+              <span class="material-symbols-rounded">calendar_month</span>
+              <div>
+                <p class="appt-label">วันนัดซ่อม</p>
+                <p class="appt-value">09 กุมภาพันธ์ 2569</p>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="tech-info">
+              <div class="tech-row">
+                <div class="tech-icon-wrap">
+                  <span class="material-symbols-rounded">person</span>
+                </div>
+                <div>
+                  <p class="tech-label">ช่างผู้ดำเนินการ</p>
+                  <p class="tech-value">สมหมาย หมายสม</p>
+                </div>
+              </div>
+              <div class="tech-row">
+                <div class="tech-icon-wrap">
+                  <span class="material-symbols-rounded">phone</span>
+                </div>
+                <div class="phone-group">
+                  <div>
+                    <p class="tech-label">เบอร์ติดต่อ</p>
+                    <a href="tel:0996992234" class="tech-value tech-value--phone">099-699-2234</a>
+                  </div>
+                  <button class="btn-copy" id="btn-copy-phone" data-phone="0996992234" aria-label="คัดลอกเบอร์โทร">
+                    <span class="material-symbols-rounded" id="copy-icon">content_copy</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-connector"></div>
+        <div class="tl-icon tl-icon--green">
+          <span class="material-symbols-rounded">task_alt</span>
+        </div>
+        <div class="tl-card">
+          <div class="tl-card__header">
+            <p class="tl-title">คำร้องได้รับการอนุมัติ</p>
+            <span class="tl-date">05/02/2569</span>
+          </div>
+          <div class="tl-card__body">
+            <p class="tl-desc">เจ้าหน้าที่อนุมัติคำร้องเรียบร้อยแล้ว และอยู่ระหว่างมอบหมายช่างเพื่อดำเนินการซ่อม</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-connector"></div>
+        <div class="tl-icon tl-icon--amber">
+          <span class="material-symbols-rounded">manage_search</span>
+        </div>
+        <div class="tl-card">
+          <div class="tl-card__header">
+            <p class="tl-title">อยู่ระหว่างการตรวจสอบ</p>
+            <span class="tl-date">03/02/2569</span>
+          </div>
+          <div class="tl-card__body">
+            <p class="tl-desc">เจ้าหน้าที่กำลังตรวจสอบและประเมินความเสียหายเพื่อจัดลำดับงานซ่อม</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item tl-item--last">
+        <div class="tl-icon tl-icon--slate">
+          <span class="material-symbols-rounded">add_circle</span>
+        </div>
+        <div class="tl-card tl-card--clickable" id="cardRequestSubmitted" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="tl-card__header">
+            <p class="tl-title">ส่งคำร้องแจ้งซ่อมสำเร็จ</p>
+            <span class="tl-date">01/02/2569</span>
+          </div>
+          <div class="tl-card__body">
+            <p class="tl-desc">ผู้แจ้งได้ยื่นคำร้องแจ้งซ่อมเรียบร้อยแล้ว รายละเอียดดังนี้</p>
+            <div class="repair-tags">
+              <span class="repair-tag">
+                <span class="material-symbols-rounded">lightbulb</span>โคมไฟเสีย
+              </span>
+              <span class="repair-tag repair-tag--type">
+                <span class="material-symbols-rounded">bolt</span>งานไฟฟ้า
+              </span>
+            </div>
+            <div class="tl-view-more">
+              <span class="material-symbols-rounded">visibility</span>
+              ดูรายละเอียดคำร้อง
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+
+  <div class="modal-overlay" id="requestModalOverlay">
+    <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+      <div class="modal-sheet__handle-bar">
+        <span class="modal-handle"></span>
+      </div>
+
+      <div class="modal-header">
+        <div class="modal-header__icon">
+          <span class="material-symbols-rounded">description</span>
+        </div>
+        <div class="modal-header__text">
+          <h3 class="modal-title" id="modalTitle">รายละเอียดคำร้องแจ้งซ่อม</h3>
+          <p class="modal-sub">รหัส Case: <strong>1100067</strong> · ยื่นเมื่อ 01/02/2569</p>
+        </div>
+        <button class="modal-close" id="btnModalClose" aria-label="ปิด">
+          <span class="material-symbols-rounded">close</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- 1. ข้อมูลส่วนตัว -->
+        <section class="modal-section">
+          <div class="modal-section__head">
+            <div class="modal-section__icon modal-section__icon--blue">
+              <span class="material-symbols-rounded">badge</span>
+            </div>
+            <h4 class="modal-section__title">ข้อมูลส่วนตัว</h4>
+          </div>
+          <div class="detail-card">
+            <div class="detail-row">
+              <div class="detail-row__icon"><span class="material-symbols-rounded">person</span></div>
+              <div class="detail-row__text">
+                <span class="detail-label">ชื่อผู้แจ้ง</span>
+                <span class="detail-value">นายปีเตอร์ แอนเดอร์สัน</span>
+              </div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-row__icon"><span class="material-symbols-rounded">call</span></div>
+              <div class="detail-row__text">
+                <span class="detail-label">เบอร์โทรติดต่อ</span>
+                <a href="tel:0804562334" class="detail-value detail-value--link">080-456-2334</a>
+              </div>
+            </div>
+            <div class="detail-row detail-row--last">
+              <div class="detail-row__icon"><span class="material-symbols-rounded">meeting_room</span></div>
+              <div class="detail-row__text">
+                <span class="detail-label">หมายเลขห้อง</span>
+                <span class="detail-value">111320</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. รายงานปัญหา -->
+        <section class="modal-section">
+          <div class="modal-section__head">
+            <div class="modal-section__icon modal-section__icon--amber">
+              <span class="material-symbols-rounded">report_problem</span>
+            </div>
+            <h4 class="modal-section__title">รายงานปัญหา</h4>
+          </div>
+          <div class="detail-card">
+            <div class="detail-row">
+              <div class="detail-row__icon"><span class="material-symbols-rounded">construction</span></div>
+              <div class="detail-row__text">
+                <span class="detail-label">ประเภทงาน</span>
+                <div class="chip-group">
+                  <span class="chip">งานไฟฟ้า</span>
+                  <span class="chip">งานประปา</span>
+                </div>
+              </div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-row__icon"><span class="material-symbols-rounded">bug_report</span></div>
+              <div class="detail-row__text">
+                <span class="detail-label">ปัญหาที่แจ้ง</span>
+                <span class="detail-value">โคมไฟเสีย, ชักโครกชำรุด</span>
+              </div>
+            </div>
+            <div class="detail-row detail-row--last">
+              <div class="detail-row__icon"><span class="material-symbols-rounded">key</span></div>
+              <div class="detail-row__text">
+                <span class="detail-label">อนุญาตเข้าห้อง</span>
+                <span class="detail-value detail-value--success">
+                  <span class="material-symbols-rounded status-dot-icon">check_circle</span>
+                  อนุญาตให้เข้าห้องได้
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. รูปภาพที่แนบ -->
+        <section class="modal-section">
+          <div class="modal-section__head">
+            <div class="modal-section__icon modal-section__icon--green">
+              <span class="material-symbols-rounded">photo_library</span>
+            </div>
+            <h4 class="modal-section__title">รูปภาพที่แนบ</h4>
+            <span class="modal-section__count" id="photoCount">2 รูป</span>
+          </div>
+
+          <div class="photo-grid" id="photoGrid">
+            <button class="photo-thumb" data-full="" data-label="โคมไฟเสีย">
+              <span class="material-symbols-rounded photo-thumb__icon">lightbulb</span>
+              <span class="photo-thumb__caption">โคมไฟเสีย</span>
+            </button>
+            <button class="photo-thumb" data-full="" data-label="ชักโครกชำรุด">
+              <span class="material-symbols-rounded photo-thumb__icon">plumbing</span>
+              <span class="photo-thumb__caption">ชักโครกชำรุด</span>
+            </button>
+          </div>
+          <p class="photo-hint">
+            <span class="material-symbols-rounded">info</span>
+            ตัวอย่างรูปภาพจะแสดงผลจริงเมื่อเชื่อมต่อฐานข้อมูลรูปภาพ
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ เพิ่มใหม่: Lightbox สำหรับดูรูปขยาย (รองรับอนาคต) ═══ -->
+  <div class="lightbox-overlay" id="lightboxOverlay">
+    <button class="lightbox-close" id="btnLightboxClose" aria-label="ปิด">
+      <span class="material-symbols-rounded">close</span>
+    </button>
+    <div class="lightbox-content" id="lightboxContent">
+      <span class="material-symbols-rounded lightbox-placeholder-icon">image</span>
+      <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="case_status.js"></script>
+</body>
+</html>

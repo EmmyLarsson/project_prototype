@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ประเมินงานซ่อม - Repair Rating</title>
+<link rel="stylesheet" href="rating.css">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ═══ TOP APP BAR ═══ -->
+  <header class="app-bar">
+    <div class="app-bar__inner">
+      <button class="icon-btn" id="btnBack" aria-label="ปิด">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <div>
+        <h1 class="app-bar__title">ประเมินงานซ่อม</h1>
+        <p class="app-bar__sub">ให้คะแนนความพึงพอใจในการซ่อม</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-main">
+
+    <!-- ═══ CARD 1: STAR RATING ═══ -->
+    <section class="card">
+      <div class="card__header">
+        <div class="icon-badge icon-badge--gold">
+          <span class="material-symbols-outlined">star</span>
+        </div>
+        <div>
+          <h2 class="card__title">ความพึงพอใจ</h2>
+          <p class="card__sub">แตะดาวเพื่อให้คะแนนงานซ่อม</p>
+        </div>
+      </div>
+
+      <div class="card__body">
+        <div class="rating-stars" id="ratingStars">
+          <button class="rating-star" data-value="1" aria-label="1 ดาว">
+            <span class="material-symbols-outlined">star</span>
+          </button>
+          <button class="rating-star" data-value="2" aria-label="2 ดาว">
+            <span class="material-symbols-outlined">star</span>
+          </button>
+          <button class="rating-star" data-value="3" aria-label="3 ดาว">
+            <span class="material-symbols-outlined">star</span>
+          </button>
+          <button class="rating-star" data-value="4" aria-label="4 ดาว">
+            <span class="material-symbols-outlined">star</span>
+          </button>
+          <button class="rating-star" data-value="5" aria-label="5 ดาว">
+            <span class="material-symbols-outlined">star</span>
+          </button>
+        </div>
+
+        <div class="rating-scale-labels">
+          <span>ปรับปรุง</span>
+          <span>ยอดเยี่ยม</span>
+        </div>
+
+        <div class="rating-feedback" id="ratingFeedback">
+          <span class="material-symbols-outlined" id="ratingFeedbackIcon">sentiment_neutral</span>
+          <span id="ratingFeedbackText">โปรดให้คะแนนความพึงพอใจ</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CARD 2: UPLOAD PHOTO ═══ -->
+    <section class="card">
+      <div class="card__header">
+        <div class="icon-badge icon-badge--blue">
+          <span class="material-symbols-outlined">add_a_photo</span>
+        </div>
+        <div>
+          <h2 class="card__title">รูปภาพหลังการซ่อม</h2>
+          <p class="card__sub">แนบรูปเพื่อยืนยันผลงาน (ไม่บังคับ)</p>
+        </div>
+        <span class="badge-counter" id="imgCounter">0/6</span>
+      </div>
+
+      <div class="card__body">
+        <label class="upload-zone" for="photoUpload" id="uploadZone" tabindex="0">
+          <input type="file" id="photoUpload" accept="image/*" multiple hidden>
+          <div class="upload-zone__icon-wrap">
+            <span class="material-symbols-outlined">upload</span>
+          </div>
+          <p class="upload-zone__title">แนบรูปภาพประกอบ</p>
+          <p class="upload-zone__sub">สูงสุด 6 รูป, ไฟล์ละไม่เกิน 10 MB</p>
+        </label>
+
+        <div class="img-grid" id="imgGrid"></div>
+      </div>
+    </section>
+
+    <!-- ═══ CARD 3: SUGGESTIONS ═══ -->
+    <section class="card">
+      <div class="card__header">
+        <div class="icon-badge icon-badge--amber">
+          <span class="material-symbols-outlined">rate_review</span>
+        </div>
+        <div>
+          <h2 class="card__title">ข้อเสนอแนะ</h2>
+          <p class="card__sub">แสดงความคิดเห็นเพิ่มเติม (ไม่บังคับ)</p>
+        </div>
+      </div>
+
+      <div class="card__body">
+        <div class="field-group">
+          <div class="textarea-wrap">
+            <textarea class="field-input field-textarea" id="suggestions" rows="4"
+              placeholder="โปรดระบุข้อเสนอแนะเพื่อพัฒนาคุณภาพการซ่อม..."></textarea>
+            <div class="char-count" id="charCount">0 / 500</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FIXED BOTTOM BAR ═══ -->
+  <div class="bottom-bar">
+    <button class="btn-primary" id="btnSubmit">
+      <span class="material-symbols-outlined">task_alt</span>
+      ยืนยันการประเมิน
+    </button>
+  </div>
+
+  <!-- ═══ SUCCESS MODAL ═══ -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-sheet">
+      <div class="modal-handle"></div>
+      <div class="success-ring">
+        <div class="success-icon">
+          <span class="material-symbols-outlined" style="color:#fff; font-size:34px;">check</span>
+        </div>
+      </div>
+      <h3 class="modal-title">ขอบคุณสำหรับการประเมิน</h3>
+      <p class="modal-desc">ความคิดเห็นของคุณจะช่วยพัฒนา<br>คุณภาพการบริการซ่อมของเราให้ดียิ่งขึ้น</p>
+      <button class="btn-primary btn-primary--full" id="btnModalClose">
+        เสร็จสิ้น
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══ TOAST ═══ -->
+  <div class="app-toast" id="toast">
+    <span class="material-symbols-outlined">info</span>
+    <span id="toastText"></span>
+  </div>
+
+  <script src="rating.js"></script>
+</body>
+</html>

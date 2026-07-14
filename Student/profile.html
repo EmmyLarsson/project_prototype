@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรไฟล์ — ระบบแจ้งซ่อมหอพัก 10-11 ม.อ.หาดใหญ่</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+    <header class="profile-header">
+        <div class="avatar-wrap">
+            <div class="avatar-ring">
+                <img class="avatar-img"
+                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPDP3NZxgZeHB_l_5walaBpnZmDOV3iIAnTBs62WZNsRmrkNMRI4z3si0xarAMoIilyDJXl831A8S7ESm_5T47PsrBdlGkirbgNblj02FxN-HYuC0gs3zJ0x2v8hPK7xEF3M74o1YYPRQp01hNAbJ1ZqyBw1Jo3v-GU2HRcvwuqFQp747kjbgZfM3nFuMFBoEq4GtdCH0XvZYjEGpJ7jUtA2AW46mVm-VIxXMIT0YGpxduZ2YkoZGPTW5GyqJvlCzPdcOi6B7L1Is"
+                     alt="รูปโปรไฟล์"
+                     onerror="this.style.background='#eef2fb'">
+            </div>
+            <span class="avatar-status" aria-hidden="true"></span>
+        </div>
+
+        <h1 class="profile-name">นายปีเตอร์ แอนเดอร์สัน</h1>
+        <span class="profile-id-badge">
+            <span class="material-symbols-outlined">badge</span>
+            6710210067
+        </span>
+    </header>
+
+    <main>
+
+        <p class="sec-label">การจัดการบัญชี</p>
+
+        <div class="menu-group">
+            <button class="menu-item" id="menuEdit" aria-label="แก้ไขข้อมูลส่วนตัว">
+                <div class="menu-left">
+                    <div class="menu-icon ic-navy">
+                        <span class="material-symbols-outlined">edit</span>
+                    </div>
+                    <div class="menu-texts">
+                        <span class="menu-title">แก้ไขข้อมูล</span>
+                        <span class="menu-sub">ชื่อ, ห้องพัก, ข้อมูลส่วนตัว</span>
+                    </div>
+                </div>
+                <span class="menu-chevron">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </span>
+            </button>
+
+            <button class="menu-item" id="menuPhone" aria-label="เบอร์โทรติดต่อ">
+                <div class="menu-left">
+                    <div class="menu-icon ic-gold">
+                        <span class="material-symbols-outlined">call</span>
+                    </div>
+                    <div class="menu-texts">
+                        <span class="menu-title">เบอร์โทรติดต่อ</span>
+                        <span class="menu-sub">จัดการเบอร์โทรศัพท์ของคุณ</span>
+                    </div>
+                </div>
+                <span class="menu-chevron">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </span>
+            </button>
+        </div>
+
+        <div class="logout-section">
+            <button class="btn-logout" id="btnLogout" aria-label="ออกจากระบบ">
+                <span class="material-symbols-outlined">logout</span>
+                ออกจากระบบ
+            </button>
+        </div>
+
+        <p class="ver-text">ระบบแจ้งซ่อมหอพัก 10-11 ม.อ.หาดใหญ่  ·  v1.0.0</p>
+
+    </main>
+
+    <nav class="bottom-nav" aria-label="เมนูหลัก">
+        <button class="nav-it" data-page="home" aria-label="หน้าหลัก">
+            <span class="material-symbols-outlined">home</span>
+            <span class="n-lbl">หน้าหลัก</span>
+        </button>
+        <button class="nav-it" data-page="history" aria-label="ประวัติการแจ้ง">
+            <span class="material-symbols-outlined">history</span>
+            <span class="n-lbl">ประวัติแจ้ง</span>
+        </button>
+        <button class="nav-it active" data-page="profile" aria-label="โปรไฟล์">
+            <span class="material-symbols-outlined">person</span>
+            <span class="n-lbl">โปรไฟล์</span>
+        </button>
+    </nav>
+
+    <script src="profile.js"></script>
+
+</body>
+</html>

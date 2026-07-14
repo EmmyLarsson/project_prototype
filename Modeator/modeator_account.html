@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>จัดการบุคลากร | Dormitory Staff Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="modeator_account.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════ TOPBAR (shared) ═══════════════════════ -->
+  <header class="topbar">
+    <div class="topbar__brand">
+      <div class="topbar__logo"><span class="material-symbols-outlined">apartment</span></div>
+      <div>
+        <div class="topbar__title">Dormitory Staff Portal</div>
+        <div class="topbar__subtitle">PSU DORM 10&ndash;11 · HAT YAI</div>
+      </div>
+    </div>
+    <div class="topbar__right">
+      <div class="topbar__user">
+        <div class="topbar__user-avatar">
+          <svg viewBox="0 0 32 32"><rect width="32" height="32" fill="#dde1ff"/><circle cx="16" cy="12" r="6" fill="#1a40c2"/><path d="M4 30c0-7 5-11 12-11s12 4 12 11" fill="#1a40c2"/></svg>
+        </div>
+        <div>
+          <div class="topbar__user-name">เจ้าหน้าที่หอพัก</div>
+          <div class="topbar__user-role">Staff · Dorm 10-11</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ SIDEBAR (shared) ═══════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar__identity">
+      <svg class="sidebar__logo" viewBox="0 0 72 72">
+        <circle cx="36" cy="36" r="36" fill="#1a40c2"/>
+        <circle cx="36" cy="36" r="30" fill="#fff"/>
+        <path d="M36 14 L54 24 L36 34 L18 24 Z" fill="#fcd400"/>
+        <rect x="24" y="34" width="24" height="20" fill="#1a40c2"/>
+        <rect x="30" y="40" width="12" height="14" fill="#fff"/>
+      </svg>
+      <h2>ระบบแจ้งซ่อมหอพักนักศึกษาในกำกับ 10-11<br>มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตหาดใหญ่</h2>
+    </div>
+
+    <nav class="sidebar__nav">
+      <ul>
+        <li class="sidebar__item" data-page="home">
+          <span class="material-symbols-outlined">home</span><span>หน้าหลัก</span>
+        </li>
+        <li class="sidebar__item" data-page="repair">
+          <span class="material-symbols-outlined">build</span><span>จัดการงานซ่อม</span>
+        </li>
+        <li class="sidebar__item" data-page="equipment">
+          <span class="material-symbols-outlined">inventory_2</span><span>ครุภัณฑ์</span>
+        </li>
+        <li class="sidebar__item" data-page="report">
+          <span class="material-symbols-outlined">description</span><span>จัดทำสรุป</span>
+        </li>
+        <li class="sidebar__item is-active" data-page="personnel">
+          <span class="material-symbols-outlined">manage_accounts</span><span>จัดการบุคลากร</span>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__footer">
+      <button class="sidebar__logout" id="logout-btn">
+        <span class="material-symbols-outlined">logout</span> ออกจากระบบ
+      </button>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════ MAIN CONTENT ═══════════════════════ -->
+  <main class="main">
+
+    <div class="page-header">
+      <div>
+        <div class="page-header__label">Personnel Management</div>
+        <div class="page-header__datetime"><span>จัดการบุคลากร</span></div>
+      </div>
+      <button class="btn-add-personnel" id="open-add-modal">
+        <span class="material-symbols-outlined">person_add</span> เพิ่มข้อมูลบุคลากร
+      </button>
+    </div>
+
+    <!-- Search -->
+    <div class="search-row">
+      <div class="search-box">
+        <span class="material-symbols-outlined">search</span>
+        <input type="text" id="search-input" placeholder="ค้นหาชื่อ, รหัสบุคลากร หรืออีเมล...">
+      </div>
+    </div>
+
+    <!-- Role filter pills -->
+    <div class="role-filter-row" id="role-filter-row">
+      <button class="role-pill is-active" data-role="all">
+        <span class="material-symbols-outlined">apps</span>
+        ทั้งหมด <span class="role-pill__count" id="count-all">0</span>
+      </button>
+      <button class="role-pill" data-role="student">
+        <span class="material-symbols-outlined">school</span>
+        นักศึกษา <span class="role-pill__count" id="count-student">0</span>
+      </button>
+      <button class="role-pill" data-role="staff">
+        <span class="material-symbols-outlined">badge</span>
+        เจ้าหน้าที่ <span class="role-pill__count" id="count-staff">0</span>
+      </button>
+      <button class="role-pill" data-role="technician">
+        <span class="material-symbols-outlined">engineering</span>
+        ช่างผู้ดำเนินการ <span class="role-pill__count" id="count-technician">0</span>
+      </button>
+    </div>
+
+    <!-- Personnel card grid -->
+    <section>
+      <div class="personnel-grid" id="personnel-grid"></div>
+      <div class="empty-state" id="empty-state" style="display:none;">
+        <span class="material-symbols-outlined">group_off</span>
+        <p>ไม่พบข้อมูลบุคลากรที่ตรงกับเงื่อนไข</p>
+      </div>
+      <div class="pagination" id="pagination"></div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ MODAL: ADD / EDIT PERSONNEL ═══════════════════════ -->
+  <div class="modal-overlay" id="personnel-modal-overlay">
+    <div class="personnel-modal">
+      <div class="personnel-modal__header">
+        <h2 id="modal-title">เพิ่มข้อมูลบุคลากร</h2>
+        <button class="modal-delete-btn" id="modal-delete-btn" style="display:none;">
+          <span class="material-symbols-outlined">delete</span> ลบข้อมูลบุคลากร
+        </button>
+        <button class="modal-close-btn" id="modal-close-btn">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="personnel-modal__body">
+        <!-- Left: avatar upload -->
+        <div class="modal-upload-col">
+          <label class="modal-field-label">รูปโปรไฟล์</label>
+          <div class="avatar-upload-zone" id="avatar-upload-zone">
+            <input type="file" id="avatar-input" accept="image/*" class="avatar-upload-zone__input">
+            <div class="avatar-upload-zone__placeholder" id="avatar-placeholder">
+              <span class="material-symbols-outlined">person</span>
+            </div>
+            <div class="avatar-upload-zone__preview" id="avatar-preview" style="display:none;">
+              <img id="preview-avatar-img" alt="รูปโปรไฟล์">
+            </div>
+            <div class="avatar-upload-zone__overlay">
+              <span class="material-symbols-outlined">photo_camera</span>
+            </div>
+          </div>
+          <span class="upload-hint">คลิกที่รูปเพื่ออัปโหลด</span>
+          <span class="field-error" id="avatar-error"></span>
+        </div>
+
+        <!-- Right: form fields -->
+        <div class="modal-form-col">
+
+          <!-- Role selector -->
+          <div class="modal-field">
+            <label class="modal-field-label" for="role-select">บทบาท / ตำแหน่ง</label>
+            <div class="select-wrap">
+              <select id="role-select" class="modal-select">
+                <option value="">เลือกบทบาท</option>
+                <option value="student">นักศึกษา</option>
+                <option value="staff">เจ้าหน้าที่</option>
+                <option value="technician">ช่างผู้ดำเนินการ</option>
+              </select>
+              <span class="material-symbols-outlined select-wrap__icon">expand_more</span>
+            </div>
+            <span class="field-error" id="role-error"></span>
+          </div>
+
+          <!-- Common fields: name / phone (hidden entirely for technician logic handled in JS) -->
+          <div class="modal-field-row" id="common-fields-row">
+            <div class="modal-field">
+              <label class="modal-field-label" for="fullname-input">ชื่อ-นามสกุล</label>
+              <input type="text" id="fullname-input" class="modal-input" placeholder="เช่น แอนนี่ เวอร์ตัน">
+              <span class="field-error" id="fullname-error"></span>
+            </div>
+            <div class="modal-field">
+              <label class="modal-field-label" for="phone-input">เบอร์โทรศัพท์</label>
+              <input type="tel" id="phone-input" class="modal-input" placeholder="เช่น 080-123-4567">
+              <span class="field-error" id="phone-error"></span>
+            </div>
+          </div>
+
+          <div class="modal-field" id="email-field">
+            <label class="modal-field-label" for="email-input">อีเมล</label>
+            <input type="email" id="email-input" class="modal-input" placeholder="example@email.com">
+            <span class="field-error" id="email-error"></span>
+          </div>
+
+          <!-- ═══ Dynamic section: Student ═══ -->
+          <div class="dynamic-section" id="student-section" style="display:none;">
+            <div class="account-box">
+              <div class="account-box__label">
+                <span class="material-symbols-outlined">account_circle</span> ข้อมูลบัญชี
+              </div>
+              <div class="modal-field-row">
+                <div class="modal-field">
+                  <label class="modal-field-label" for="student-username">Username</label>
+                  <input type="text" id="student-username" class="modal-input" placeholder="Username">
+                  <span class="field-error" id="student-username-error"></span>
+                </div>
+                <div class="modal-field">
+                  <label class="modal-field-label" for="student-password">Password</label>
+                  <div class="password-wrap">
+                    <input type="password" id="student-password" class="modal-input" placeholder="Password">
+                    <button type="button" class="password-toggle" data-target="student-password">
+                      <span class="material-symbols-outlined">visibility</span>
+                    </button>
+                  </div>
+                  <span class="field-error" id="student-password-error"></span>
+                </div>
+              </div>
+            </div>
+            <div class="modal-field">
+              <label class="modal-field-label" for="room-number">หมายเลขห้องพัก</label>
+              <input type="text" id="room-number" class="modal-input" placeholder="เช่น 110912">
+              <span class="field-error" id="room-number-error"></span>
+            </div>
+          </div>
+
+          <!-- ═══ Dynamic section: Staff ═══ -->
+          <div class="dynamic-section" id="staff-section" style="display:none;">
+            <div class="account-box">
+              <div class="account-box__label">
+                <span class="material-symbols-outlined">account_circle</span> ข้อมูลบัญชี
+              </div>
+              <div class="modal-field-row">
+                <div class="modal-field">
+                  <label class="modal-field-label" for="staff-username">Username</label>
+                  <input type="text" id="staff-username" class="modal-input" placeholder="Username">
+                  <span class="field-error" id="staff-username-error"></span>
+                </div>
+                <div class="modal-field">
+                  <label class="modal-field-label" for="staff-password">Password</label>
+                  <div class="password-wrap">
+                    <input type="password" id="staff-password" class="modal-input" placeholder="Password">
+                    <button type="button" class="password-toggle" data-target="staff-password">
+                      <span class="material-symbols-outlined">visibility</span>
+                    </button>
+                  </div>
+                  <span class="field-error" id="staff-password-error"></span>
+                </div>
+              </div>
+            </div>
+            <div class="modal-field">
+              <label class="modal-field-label" for="staff-position">ตำแหน่งงาน</label>
+              <input type="text" id="staff-position" class="modal-input" placeholder="เช่น เจ้าหน้าที่ธุรการ">
+              <span class="field-error" id="staff-position-error"></span>
+            </div>
+          </div>
+
+          <!-- ═══ Dynamic section: Technician ═══ -->
+          <div class="dynamic-section" id="technician-section" style="display:none;">
+            <div class="modal-field">
+              <label class="modal-field-label" for="tech-specialty">ประเภทความเชี่ยวชาญช่าง</label>
+              <div class="select-wrap">
+                <select id="tech-specialty" class="modal-select">
+                  <option value="">เลือกความเชี่ยวชาญ</option>
+                  <option value="electric">ช่างไฟฟ้า</option>
+                  <option value="plumbing">ช่างประปา</option>
+                  <option value="furniture">ช่างเฟอร์นิเจอร์</option>
+                  <option value="general">ช่างทั่วไป</option>
+                </select>
+                <span class="material-symbols-outlined select-wrap__icon">expand_more</span>
+              </div>
+              <span class="field-error" id="tech-specialty-error"></span>
+            </div>
+            <div class="modal-field">
+              <label class="modal-field-label" for="tech-number">หมายเลขช่าง</label>
+              <input type="text" id="tech-number" class="modal-input" placeholder="เช่น T000444">
+              <span class="field-error" id="tech-number-error"></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="personnel-modal__footer">
+        <button class="modal-btn modal-btn--cancel" id="modal-cancel-btn">ยกเลิก</button>
+        <button class="modal-btn modal-btn--save" id="modal-save-btn">
+          <span id="save-btn-label">เพิ่มข้อมูล</span>
+          <span class="material-symbols-outlined" id="save-btn-icon">person_add</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ MODAL: VALIDATION ALERT ═══════════════════════ -->
+  <div class="modal-overlay" id="alert-modal-overlay">
+    <div class="alert-modal">
+      <div class="alert-modal__icon">
+        <span class="material-symbols-outlined">error</span>
+      </div>
+      <h3>กรอกข้อมูลไม่ครบถ้วน</h3>
+      <p id="alert-modal-message">กรุณากรอกข้อมูลให้ครบทุกช่องก่อนบันทึก</p>
+      <button class="modal-btn modal-btn--save" id="alert-modal-close">รับทราบ</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ MODAL: DELETE CONFIRM ═══════════════════════ -->
+  <div class="modal-overlay" id="delete-modal-overlay">
+    <div class="alert-modal">
+      <div class="alert-modal__icon alert-modal__icon--danger">
+        <span class="material-symbols-outlined">delete</span>
+      </div>
+      <h3>ยืนยันการลบข้อมูลบุคลากร</h3>
+      <p id="delete-modal-message">คุณต้องการลบรายชื่อนี้ออกจากระบบใช่หรือไม่?</p>
+      <div class="alert-modal__actions">
+        <button class="modal-btn modal-btn--cancel" id="delete-cancel-btn">ยกเลิก</button>
+        <button class="modal-btn modal-btn--danger" id="delete-confirm-btn">ลบข้อมูล</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ TOAST ═══════════════════════ -->
+  <div class="toast" id="toast">
+    <span class="material-symbols-outlined">check_circle</span>
+    <span id="toast-message">บันทึกข้อมูลสำเร็จ</span>
+  </div>
+
+  <script src="personnel_managmoe.js"></script>
+</body>
+</html>

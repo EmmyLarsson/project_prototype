@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เบอร์โทรติดต่อ — UniMaintain</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <link rel="stylesheet" href="phone_number.css">
+</head>
+<body>
+
+  <!-- ════════════════ HEADER ════════════════ -->
+  <header class="app-header">
+    <div class="app-header__inner">
+      <button class="btn-icon" id="btn-back" aria-label="กลับหน้าโปรไฟล์">
+        <span class="material-symbols-rounded">arrow_back</span>
+      </button>
+      <h1 class="header-title">เบอร์โทรติดต่อ</h1>
+    </div>
+  </header>
+
+  <!-- ════════════════ MAIN ════════════════ -->
+  <main class="main-content">
+
+    <!-- Hero Banner -->
+    <div class="hero-section">
+      <div class="hero-icon-wrap">
+        <span class="material-symbols-rounded hero-icon">contacts</span>
+      </div>
+      <p class="hero-desc">เลือกแผนกที่ต้องการติดต่อ<br>สามารถโทรหรือคัดลอกเบอร์ได้ทันที</p>
+    </div>
+
+    <!-- Contact Card Container -->
+    <section class="contact-section">
+
+      <!-- Group Label -->
+      <div class="group-label">
+        <span class="material-symbols-rounded">apartment</span>
+        สายด่วนภายในหอพัก
+      </div>
+
+      <!-- Contact List -->
+      <ul class="contact-list" role="list">
+
+        <!-- ที่ทำการหอพัก -->
+        <li class="contact-item">
+          <div class="contact-icon-wrap contact-icon-wrap--yellow">
+            <span class="material-symbols-rounded">home_work</span>
+          </div>
+          <div class="contact-info">
+            <span class="contact-name">ที่ทำการหอพัก</span>
+            <span class="contact-number">074-123456</span>
+          </div>
+          <div class="contact-actions">
+            <button class="btn-copy" data-phone="074-123456" aria-label="คัดลอกเบอร์">
+              <span class="material-symbols-rounded">content_copy</span>
+            </button>
+            <a class="btn-call" href="tel:074123456" aria-label="โทรหาที่ทำการหอพัก">
+              <span class="material-symbols-rounded">call</span>
+            </a>
+          </div>
+        </li>
+
+        <li class="contact-divider" role="separator"></li>
+
+        <!-- ฝ่ายดูแลระบบ -->
+        <li class="contact-item">
+          <div class="contact-icon-wrap contact-icon-wrap--blue">
+            <span class="material-symbols-rounded">settings</span>
+          </div>
+          <div class="contact-info">
+            <span class="contact-name">ฝ่ายดูแลระบบ</span>
+            <span class="contact-number">074-123457</span>
+          </div>
+          <div class="contact-actions">
+            <button class="btn-copy" data-phone="074-123457" aria-label="คัดลอกเบอร์">
+              <span class="material-symbols-rounded">content_copy</span>
+            </button>
+            <a class="btn-call" href="tel:074123457" aria-label="โทรหาฝ่ายดูแลระบบ">
+              <span class="material-symbols-rounded">call</span>
+            </a>
+          </div>
+        </li>
+
+        <li class="contact-divider" role="separator"></li>
+
+        <!-- ฝ่ายจัดการงานซ่อม -->
+        <li class="contact-item">
+          <div class="contact-icon-wrap contact-icon-wrap--green">
+            <span class="material-symbols-rounded">build_circle</span>
+          </div>
+          <div class="contact-info">
+            <span class="contact-name">ฝ่ายจัดการงานซ่อม</span>
+            <span class="contact-number">074-123459</span>
+          </div>
+          <div class="contact-actions">
+            <button class="btn-copy" data-phone="074-123459" aria-label="คัดลอกเบอร์">
+              <span class="material-symbols-rounded">content_copy</span>
+            </button>
+            <a class="btn-call" href="tel:074123459" aria-label="โทรหาฝ่ายจัดการงานซ่อม">
+              <span class="material-symbols-rounded">call</span>
+            </a>
+          </div>
+        </li>
+
+        <li class="contact-divider" role="separator"></li>
+
+        <!-- ฝ่ายช่าง -->
+        <li class="contact-item">
+          <div class="contact-icon-wrap contact-icon-wrap--orange">
+            <span class="material-symbols-rounded">engineering</span>
+          </div>
+          <div class="contact-info">
+            <span class="contact-name">ฝ่ายช่าง</span>
+            <span class="contact-number">074-123460</span>
+          </div>
+          <div class="contact-actions">
+            <button class="btn-copy" data-phone="074-123460" aria-label="คัดลอกเบอร์">
+              <span class="material-symbols-rounded">content_copy</span>
+            </button>
+            <a class="btn-call" href="tel:074123460" aria-label="โทรหาฝ่ายช่าง">
+              <span class="material-symbols-rounded">call</span>
+            </a>
+          </div>
+        </li>
+
+      </ul><!-- /.contact-list -->
+
+      <!-- Info Banner -->
+      <div class="info-banner">
+        <span class="material-symbols-rounded">info</span>
+        <p>เวลาทำการ จันทร์–ศุกร์ เวลา 08:30–16:30 น.</p>
+      </div>
+
+    </section><!-- /.contact-section -->
+
+  </main>
+
+  <!-- ════════════════ TOAST ════════════════ -->
+  <div class="toast" id="copy-toast" role="status" aria-live="polite">
+    <span class="material-symbols-rounded">check_circle</span>
+    <span class="toast-text">คัดลอกเบอร์แล้ว</span>
+  </div>
+
+  <script src="phone_number.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แก้ไขข้อมูลส่วนตัว — UniMaintain</title>
+  <link rel="stylesheet" href="profile_edit.css">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="app-header">
+    <div class="app-header__inner">
+      <button class="btn-icon" id="btn-back" aria-label="กลับ">
+        <span class="material-symbols-rounded">arrow_back_ios_new</span>
+      </button>
+      <h1 class="header-title">แก้ไขข้อมูลส่วนตัว</h1>
+      <div class="header-spacer"></div>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN ═══ -->
+  <main class="main-content">
+
+    <!-- Avatar Section -->
+    <section class="avatar-section">
+      <div class="avatar-wrapper">
+        <div class="avatar-ring">
+          <img
+            id="avatar-img"
+            src="https://lh3.googleusercontent.com/aida/ADBb0ujLgcGqTf-g3qc-qnQMgA1MLUBhvIXzacOngdH0WZ5_qsfZmvuGhu_H7iohhZqR-Ji1gAmtIAmiXQ8Zp6AXxcMd7sPOt4O7TzzObSzCAxL-WYViYYu3Rxms9wISthliatkfwm8gH44yDgxqWU94C9W6CPOXUhz7Fu9G2PI3v5YdH2eP3mNnwpkWISDqBe0OmqFNeNqZhphjW20qXSSEN08oLp9JE58oG2LjYTrfuw9s9itaD9MqiuNEnm1FvhULvX-Xg9UulpeP"
+            alt="รูปโปรไฟล์"
+            class="avatar-img"
+          >
+        </div>
+        <button class="btn-avatar-edit" id="btn-avatar-edit" aria-label="เปลี่ยนรูปโปรไฟล์">
+          <span class="material-symbols-rounded">photo_camera</span>
+        </button>
+        <input type="file" id="avatar-input" accept="image/*" hidden>
+      </div>
+      <p class="avatar-hint">แตะที่ไอคอนกล้องเพื่อเปลี่ยนรูปภาพ</p>
+    </section>
+
+    <!-- Form Card -->
+    <section class="form-section">
+
+      <!-- Read-only Info Banner -->
+      <div class="readonly-banner">
+        <span class="material-symbols-rounded">info</span>
+        <p>ชื่อ-นามสกุล และรหัสนักศึกษา ดูแลโดยเจ้าหน้าที่หอพัก</p>
+      </div>
+
+      <form id="edit-form" novalidate>
+
+        <!-- ── กลุ่ม: ข้อมูลคงที่ ── -->
+        <div class="field-group">
+          <p class="group-label">
+            <span class="material-symbols-rounded">lock</span>
+            ข้อมูลระบบ (ไม่สามารถแก้ไขได้)
+          </p>
+
+          <!-- ชื่อ-นามสกุล (readonly) -->
+          <div class="field">
+            <label class="field-label" for="fullname">ชื่อ-นามสกุล</label>
+            <div class="input-wrap input-wrap--readonly">
+              <span class="material-symbols-rounded input-icon">person</span>
+              <input
+                id="fullname"
+                type="text"
+                class="input input--readonly"
+                value="นายปีเตอร์ แอนเดอร์สัน"
+                readonly
+                tabindex="-1"
+              >
+              <span class="material-symbols-rounded lock-icon">lock</span>
+            </div>
+          </div>
+
+          <!-- รหัสนักศึกษา (readonly) -->
+          <div class="field">
+            <label class="field-label" for="student-id">รหัสนักศึกษา</label>
+            <div class="input-wrap input-wrap--readonly">
+              <span class="material-symbols-rounded input-icon">badge</span>
+              <input
+                id="student-id"
+                type="text"
+                class="input input--readonly"
+                value="6610210067"
+                readonly
+                tabindex="-1"
+              >
+              <span class="material-symbols-rounded lock-icon">lock</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── กลุ่ม: ข้อมูลที่แก้ไขได้ ── -->
+        <div class="field-group field-group--grid">
+          <p class="group-label">
+            <span class="material-symbols-rounded">edit_note</span>
+            ข้อมูลที่สามารถแก้ไขได้
+          </p>
+
+          <div class="fields-row">
+            <!-- เบอร์โทร -->
+            <div class="field" id="field-phone">
+              <label class="field-label" for="phone">เบอร์โทรติดต่อ</label>
+              <div class="input-wrap">
+                <span class="material-symbols-rounded input-icon">call</span>
+                <input id="phone" type="tel" class="input"
+                  value="080-4562334" placeholder="0xx-xxxxxxx" maxlength="12">
+              </div>
+              <p class="field-error" id="error-phone"></p>
+            </div>
+
+            <!-- หมายเลขห้อง -->
+            <div class="field" id="field-room">
+              <label class="field-label" for="room">หมายเลขห้องพัก</label>
+              <div class="input-wrap">
+                <span class="material-symbols-rounded input-icon">apartment</span>
+                <input id="room" type="text" class="input"
+                  value="111320" placeholder="เช่น 111320">
+              </div>
+              <p class="field-error" id="error-room"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Save Button -->
+        <button type="submit" class="btn-save" id="btn-save">
+          <span class="material-symbols-rounded">save</span>
+          <span>บันทึกข้อมูล</span>
+        </button>
+
+      </form>
+    </section>
+  </main>
+
+  <!-- ═══ SUCCESS MODAL ═══ -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal">
+      <div class="modal-icon">
+        <span class="material-symbols-rounded">check_circle</span>
+      </div>
+      <h2 class="modal-title" id="modal-title">แก้ไขข้อมูลสำเร็จ</h2>
+      <p class="modal-desc">ข้อมูลของคุณได้รับการอัปเดตเรียบร้อยแล้ว</p>
+      <div class="modal-summary" id="modal-summary"></div>
+      <button class="btn-modal-ok" id="btn-modal-ok">
+        <span class="material-symbols-rounded">done</span>
+        ตกลง
+      </button>
+    </div>
+  </div>
+
+  <script src="profile_edit.js"></script>
+</body>
+</html>
